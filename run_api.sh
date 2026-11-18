@@ -42,9 +42,9 @@ start_sam() {
 start_api() {
   docker rm -f "$API_NAME" >/dev/null 2>&1 || true
   docker run -d --name "$API_NAME" --restart unless-stopped --network host \
-    -e HOSTS="$API_HOSTS" -e PORT="$API_PORT" \
-    -v "$LAB:/lab" -w /lab --entrypoint python "$API_IMAGE" api_server.py >/dev/null
-  for _ in $(seq 1 30); do curl -sf "http://127.0.0.1:$API_PORT/health" >/dev/null && break; sleep 1; done
+    -e HOSTS="$API_HOSTS" -e PORT="$API_PORT" -e PADDLE_PDX_DISABLE_MODEL_SOURCE_CHECK=True \
+    -v "$LAB:/lab" -v "$LAB/cache/paddlex:/root/.paddlex" -w /lab --entrypoint python "$API_IMAGE" api_server.py >/dev/null
+  for _ in $(seq 1 90); do curl -sf "http://127.0.0.1:$API_PORT/health" >/dev/null && break; sleep 1; done
 }
 
 case "${1:-start}" in
