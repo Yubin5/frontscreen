@@ -10,6 +10,7 @@ data/real/user_*.jpg
 local.env
 # lab front end, OCR experiments and lab-only tools: kept on this machine, not part of the API server
 Dockerfile.lab
+screen_ocr.py
 vram.sh
 ocr_server.py
 auth.py

@@ -1,7 +1,6 @@
-"""Screen flattening API: send a photo, get the display screen back as a front-view JPEG (and its text).
+"""Screen flattening API: send a photo, get the display screen back as a front-view JPEG.
 
   POST /flatten   body = photo bytes (JPEG/PNG/WebP)  ->  200 image/jpeg
-  POST /read      body = photo bytes  ->  200 JSON: text read from the flattened screen (OCR)
   GET  /health    {"ok": true|false}  (is the SAM/detector server up?)
 
 Spec: docs/api.md. Needs the SAM/detector server (sam/sam_server.py, :8791).
@@ -12,7 +11,7 @@ Env:
   API_KEY_FILE  default secrets/api_key; when the file exists, callers not on loopback must send
                 "Authorization: Bearer <key>" (or "X-API-Key: <key>")
 """
-import base64, hmac, ipaddress, json, os, sys, threading, time, urllib.error, urllib.request
+import hmac, ipaddress, json, os, sys, threading, time, urllib.error, urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
@@ -21,7 +20,7 @@ import numpy as np
 
 LAB = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, LAB)
-import rectify, screen_ocr  # noqa: E402
+import rectify  # noqa: E402
 
 MAX_BYTES = 20 * 1024 * 1024
 API_KEY_FILE = os.environ.get("API_KEY_FILE", os.path.join(LAB, "secrets", "api_key"))
@@ -80,7 +79,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             self._auth()
             if urlparse(self.path).path != "/health":
-                raise ApiError(404, "unknown endpoint (POST /flatten, POST /read, GET /health)")
+                raise ApiError(404, "unknown endpoint (POST /flatten, GET /health)")
             try:
                 with urllib.request.urlopen(SAM_HEALTH, timeout=2.0) as r:
                     ok = bool(json.load(r).get("ok"))
@@ -95,8 +94,8 @@ class Handler(BaseHTTPRequestHandler):
         try:
             self._auth()
             u = urlparse(self.path)
-            if u.path not in ("/flatten", "/read"):
-                raise ApiError(404, "unknown endpoint (POST /flatten, POST /read, GET /health)")
+            if u.path != "/flatten":
+                raise ApiError(404, "unknown endpoint (POST /flatten, GET /health)")
             n = int(self.headers.get("Content-Length") or 0)
             if n <= 0:
                 raise ApiError(400, "empty body: send the photo bytes")
@@ -113,8 +112,6 @@ class Handler(BaseHTTPRequestHandler):
                 max_side = 0
             if not 256 <= max_side <= 4096:
                 raise ApiError(400, "max_side must be an integer between 256 and 4096")
-            if u.path == "/read":
-                max_side = 1600  # OCR is tuned for this size; the boxes refer to this image
             jpeg = data if data[:2] == b"\xff\xd8" else cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, 92])[1].tobytes()
             try:
                 with _detect_lock:
@@ -125,15 +122,6 @@ class Handler(BaseHTTPRequestHandler):
                 raise ApiError(422, "no display screen found in the photo")
             flat, _ = rectify.warp(img, d["quad"], aspect=True, long_side=max_side)
             ok = (d.get("validation") or {}).get("ok", True)
-            if u.path == "/read":
-                o = screen_ocr.read(flat)
-                res = {"text": o["text"], "lines": o["lines"], "check": "ok" if ok else "doubtful",
-                       "corners": [[round(x, 4), round(y, 4)] for x, y in d["quad"]],
-                       "image_size": [flat.shape[1], flat.shape[0]],
-                       "ms": {"ocr": o["ms"], "total": round((time.time() - t0) * 1000)}}
-                if q.get("image", ["0"])[0] == "1":
-                    res["image"] = base64.b64encode(cv2.imencode(".jpg", flat, [cv2.IMWRITE_JPEG_QUALITY, 90])[1]).decode()
-                return self._json(200, res)
             out = cv2.imencode(".jpg", flat, [cv2.IMWRITE_JPEG_QUALITY, 90])[1].tobytes()
             self._send(200, out, "image/jpeg", {
                 "X-Screen-Check": "ok" if ok else "doubtful",  # doubtful: worth letting the user confirm
@@ -159,8 +147,6 @@ def main():
             print(f"[api] cannot bind {host}:{port}: {e}", flush=True)
     if not servers:
         sys.exit(1)
-    if os.environ.get("OCR_PRELOAD", "1") == "1":
-        t = time.time(); screen_ocr.warm(); print(f"[api] OCR models loaded in {time.time() - t:.1f}s", flush=True)
     for s in servers[1:]:
         threading.Thread(target=s.serve_forever, daemon=True).start()
     print("[api] flatten API on " + ", ".join(f"{s.server_address[0]}:{port}" for s in servers)
