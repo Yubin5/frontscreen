@@ -1,0 +1,22 @@
+# secrets and runtime state
+secrets/
+cache/
+__pycache__/
+# experiment outputs (regenerable)
+results/
+# photos uploaded through the test page
+data/real/user_*.jpg
+# machine-specific settings for run_api.sh
+local.env
+# lab front end, OCR experiments and lab-only tools: kept on this machine, not part of the API server
+Dockerfile.lab
+vram.sh
+ocr_server.py
+auth.py
+fix.html
+demo.html
+m.html
+assist.py
+bench.py
+docs/pipeline.png
+docs/pipeline.svg

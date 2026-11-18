@@ -1,0 +1,290 @@
+{
+ "commons_bike.jpg": {
+  "label": "자전거 대여기 (안산)",
+  "goals": [
+   "자전거 빌리는 중인데 이제 뭐 해야 돼?",
+   "처음 화면으로 돌아가고 싶어"
+  ],
+  "source": "Wikimedia Commons",
+  "credit": "Berlinuno · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:%ED%8E%98%EB%8B%AC%EB%A1%9C_%ED%82%A4%EC%98%A4%EC%8A%A4%ED%81%AC_2.jpg"
+ },
+ "commons_subway.jpg": {
+  "label": "지하철 1회용 발매·충전기",
+  "goals": [
+   "교통카드 충전하고 싶어",
+   "영어 화면으로 바꾸고 싶어",
+   "서울역 가는 표 한 장 사고 싶어"
+  ],
+  "source": "Wikimedia Commons",
+  "credit": "LandAndTree · CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Ticket_Vending_and_Card_Reload_Machine_-_Seoul_Metropolitan_Subway_20240713.jpg"
+ },
+ "commons_court.jpg": {
+  "label": "법원 무인발급기",
+  "goals": [
+   "부동산 등기부등본 떼고 싶어",
+   "법인 등기 서류가 필요해",
+   "5만원짜리 지폐로 낼 수 있어?"
+  ],
+  "source": "Wikimedia Commons",
+  "credit": "Narubaru7 · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:%EC%9D%B8%EC%B2%9C%EC%A7%80%EB%B0%A9%EB%B2%95%EC%9B%90_%EB%93%B1%EA%B8%B0%EC%9A%B4%EC%98%81%EA%B3%BC%EC%95%9E_%EB%AC%B4%EC%9D%B8%EB%B0%9C%EA%B8%89%EA%B8%B0_2024.jpg"
+ },
+ "test_01.jpg": {
+  "label": "KFC 주문 키오스크 (미국)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Mjrmtg · CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Food_order_machine,_KFC,_1207_N_Ashley_Street,_Valdosta.jpg",
+  "split": "test"
+ },
+ "test_02.jpg": {
+  "label": "KFC 셀프 키오스크 (체코)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Tadeáš Bednarz · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Self-service_kiosk_in_KFC_restaurant_on_Masarykovo_n%C3%A1m%C4%9Bst%C3%AD_in_Ostrava_2025-02-06.jpg",
+  "split": "test"
+ },
+ "test_03.jpg": {
+  "label": "식당 벽걸이 주문기 (이스라엘)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "אייל · CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:%D7%97%D7%95%D7%9E%D7%95%D7%A1_%D7%90%D7%9C%D7%99%D7%94%D7%95_%D7%A2%D7%9E%D7%93%D7%AA_%D7%94%D7%96%D7%9E%D7%A0%D7%95%D7%AA.jpg",
+  "split": "test"
+ },
+ "test_04.jpg": {
+  "label": "LIRR 발매기 (미국)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "DanTD · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:10-Little_Neck_LIRR_station;_2021-11-24.jpg",
+  "split": "test"
+ },
+ "test_05.jpg": {
+  "label": "한큐 발매기 화면 (일본)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "小田急4000系ファン · CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Hankyu_Mukonoso_station_Ticket_vending_machine_screen.jpg",
+  "split": "test"
+ },
+ "test_06.jpg": {
+  "label": "병원 접수 단말 (러시아)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Domowenock.cuzya написать мне · CC BY-SA 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:%D0%A2%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB_%D0%B2_%D0%BF%D0%BE%D0%BB%D0%B8%D0%BA%D0%BB%D0%B8%D0%BD%D0%B8%D0%BA%D0%B5.jpg",
+  "split": "test"
+ },
+ "test_07.jpg": {
+  "label": "DB 발매기 화면 근접 (독일)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Balou46 · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Bahn-automat-4.jpg",
+  "split": "test"
+ },
+ "test_08.jpg": {
+  "label": "프라하 지하철 발매기",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "ŠJů · CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Bo%C5%99islavka,_stanice_metra,_automat_na_j%C3%ADzdenky.jpg",
+  "split": "test"
+ },
+ "test_09.jpg": {
+  "label": "프라하 발매기 고장 화면",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "ŠJů · CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:N%C3%A1dra%C5%BE%C3%AD_Veleslav%C3%ADn,_automat_na_j%C3%ADzdenky_mimo_provoz.jpg",
+  "split": "test"
+ },
+ "test_10.jpg": {
+  "label": "홍콩공항 셀프 체크인",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Mk2010 · CC BY-SA 3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Self_Check-In_Kiosks_at_the_Hong_Kong_International_Airport.jpg",
+  "split": "test"
+ },
+ "test_11.jpg": {
+  "label": "난카이 발매기 화면 (일본)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "NatsuTV · CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:%E5%8D%97%E6%B5%B7%E4%BB%8A%E5%AE%AE%E6%88%8E%E9%A7%85%E5%88%B8%E5%A3%B2%E6%A9%9F%E5%88%87%E7%AC%A6%E8%B3%BC%E5%85%A5%E7%94%BB%E9%9D%A2.jpg",
+  "split": "test"
+ },
+ "test_13.jpg": {
+  "label": "히스로 BA 체크인",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Terminal 5 Insider · CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Heathrow_Terminal_5_-_Check-in_Kiosk.jpg",
+  "split": "test"
+ },
+ "test_14.jpg": {
+  "label": "노르데아 ATM (노르웨이)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Wolfmann · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:ATM_(Nordea_minibank)_Bergen_Storsenter,_Bergen,_Norway_2017-10-23_b.jpg",
+  "split": "test"
+ },
+ "test_15.jpg": {
+  "label": "ATM 블루스크린",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Andrewthewikimedian · CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:ATM_blue_screen_of_death.jpg",
+  "split": "test"
+ },
+ "test_16.jpg": {
+  "label": "ATM 배치파일 화면 (인도)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Mallikarjunasj · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:ATM_screen_displaying_batch_file_instead_of_standard_screen.jpg",
+  "split": "test"
+ },
+ "test_17.jpg": {
+  "label": "셀프계산대 부팅 화면",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Gayest Frogs · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:20230818_110257_Self-checkout_kiosk_boot_screen.jpg",
+  "split": "test"
+ },
+ "test_18.jpg": {
+  "label": "무인 우편함 단말 (반사)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Rama · CC BY-SA 2.0 fr",
+  "page": "https://commons.wikimedia.org/wiki/File:Postomat-Windows-p1020439.jpg",
+  "split": "test"
+ },
+ "test_19.jpg": {
+  "label": "뮌헨 버스 발매기 부팅 화면",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Foobian · CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:MVG_Bus_Ticket_Machine_ICA_Traffic_Bootscreen.jpg",
+  "split": "test"
+ },
+ "test_20.jpg": {
+  "label": "류블랴나역 발매기",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "-stk · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:SZ_ticket_vending_machine_at_Ljubljana_main_station.jpg",
+  "split": "test"
+ },
+ "test_21.jpg": {
+  "label": "hvv 발매기 (독일)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Michał Beim · CC BY 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Ticket_machine_with_WERO_at_InnoTrans_2026.jpg",
+  "split": "test"
+ },
+ "test_22.jpg": {
+  "label": "일본 역 발매기",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Bububusu · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:%E3%82%BD%E3%82%B7%E3%82%AA%E6%B5%81%E9%80%9A%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E9%A7%85%E8%87%AA%E5%8B%95%E5%88%B8%E5%A3%B2%E6%A9%9F.jpg",
+  "split": "test"
+ },
+ "test_23.jpg": {
+  "label": "JR 발매기 (일본)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "イコちゃん２００３ · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:%E9%AB%98%E8%A6%8B%E6%B2%A2%E8%A3%BD%E8%87%AA%E5%8B%95%E5%88%B8%E5%A3%B2%E6%A9%9F(%E3%82%AA%E3%83%AC%E3%83%B3%E3%82%B8%E3%82%AB%E3%83%BC%E3%83%89%E6%8A%95%E5%85%A5%E5%8F%A3%E3%81%AA%E3%81%97).jpg",
+  "split": "test"
+ },
+ "test_24.jpg": {
+  "label": "DM 셀프계산대 (폴란드)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "WrS.tm.pl · Public domain",
+  "page": "https://commons.wikimedia.org/wiki/File:20241220_173828_Self-service_checkout._DM_Drogerie_Markt,_Nowa_Sukcesja_shopping_mall,_Al._Politechniki_1,_%C5%81%C3%B3d%C5%BA,_Poland.jpg",
+  "split": "test"
+ },
+ "test_25.jpg": {
+  "label": "도서관 셀프대출기 (캐나다)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Al12si · CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:Self-checkout_on_third_floor,_NYCL,_Toronto,_Canada.jpg",
+  "split": "test"
+ },
+ "test_26.jpg": {
+  "label": "M&S 셀프계산대 (위에서)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Jay Gooby from Brighton, United Kingdom · CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Self-service_checkout_in_M%26S.jpg",
+  "split": "test"
+ },
+ "test_27.jpg": {
+  "label": "EDEKA 셀프계산대 (독일)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Triplec85 · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Supermarket_self-checkout_EDEKA_E-Center_D%C3%BCrr_Tauberbischofsheim_3.jpg",
+  "split": "test"
+ },
+ "test_28.jpg": {
+  "label": "한큐 발매기 발매중지",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "小田急4000系ファン · CC0",
+  "page": "https://commons.wikimedia.org/wiki/File:%E9%98%AA%E6%80%A5%E5%88%B8%E5%A3%B2%E6%A9%9F%E7%99%BA%E5%A3%B2%E4%B8%AD%E6%AD%A22.jpg",
+  "split": "test"
+ },
+ "test_29.jpg": {
+  "label": "델타 체크인 (손 가림)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "DeltaNewsHub · CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Delta_Aircraft_Cleaning_-_49656588467.jpg",
+  "split": "test"
+ },
+ "test_30.jpg": {
+  "label": "MTA PPE 자판기",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Metropolitan Transportation Authority of the State of New Yo · CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:MTA_Deploys_PPE_Vending_Machines_Across_Subway_System_(50061253818).jpg",
+  "split": "test"
+ },
+ "test_31.jpg": {
+  "label": "PPE 자판기 결제 화면 (손 가림)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "Metropolitan Transportation Authority of the State of New Yo · CC BY 2.0",
+  "page": "https://commons.wikimedia.org/wiki/File:MTA_Deploys_PPE_Vending_Machines_Across_Subway_System_(50062065522).jpg",
+  "split": "test"
+ },
+ "test_32.jpg": {
+  "label": "주유기 화면 오류 (이스라엘)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "טבעת-זרם · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:%D7%A9%D7%92%D7%99%D7%90%D7%AA_%D7%9E%D7%97%D7%A9%D7%91_%D7%91%D7%AA%D7%97%D7%A0%D7%AA_%D7%93%D7%9C%D7%A7_2.jpg",
+  "split": "test"
+ },
+ "commons_spirit.jpg": {
+  "label": "스피릿항공 체크인 (미국, 광각)",
+  "goals": [],
+  "source": "Wikimedia Commons",
+  "credit": "42-BRT · CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Disused_Spirit_Airlines_check-in_counter_at_DTW_Evans_Terminal,_four_days_after_closure,_close-up_of_kiosk_(2).jpg",
+  "note": "moved from the test split 2026-11-18 after its failure was used to tune the retry"
+ }
+}

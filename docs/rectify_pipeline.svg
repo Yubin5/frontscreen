@@ -100,7 +100,7 @@
 <text x="626" y="578" class="s">후보 합의</text>
 <line x1="716" y1="574" x2="736" y2="574" stroke="#e23b2f" stroke-width="3"/>
 <text x="742" y="578" class="s">최종 화면 영역</text>
-<text x="1560" y="578" class="s" text-anchor="end">꼭짓점을 직접 끌어 고치면 ⑤만 다시 실행 (테스트 페이지 · API /v1/warp)</text>
+<text x="1560" y="578" class="s" text-anchor="end">꼭짓점을 직접 끌어 고치면 ⑤만 다시 실행 (테스트 페이지)</text>
 <rect x="40" y="610" width="900" height="335" rx="16" class="panel"/>
 <text x="60" y="642" class="h">화면 경계 오차 HD95 (화면 대각선 대비 %, 낮을수록 좋음)</text>
 <text x="60" y="664" class="m">정답 경계와 찾은 경계 사이 거리의 95번째 백분위 · 52장, 정답은 손으로 표시</text>
