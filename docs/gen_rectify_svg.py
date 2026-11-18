@@ -1,6 +1,6 @@
 """Builds docs/rectify_pipeline.svg (the README figure) from the output of docs/fig_stages.py.
 
-  python docs/gen_rectify_svg.py data/real/test_05.jpg data/real/test_03.jpg <fig_dir> docs/fig_numbers.json > docs/rectify_pipeline.svg
+  python docs/gen_rectify_svg.py data/real/test_05.jpg data/real/commons_spirit.jpg <fig_dir> docs/fig_numbers.json > docs/rectify_pipeline.svg
   fig_dir     : stages.json, flat_check.jpg, frontal.jpg, warped.jpg (from fig_stages.py)
   numbers.json: {"groups": [[label, n, iou, hd95, cut, over]], "cut_over_2": int, "sec": float, "test_n": int}
 PNG: open the SVG in a browser (headless Chrome screenshot at 2x).
@@ -77,8 +77,8 @@ cards = [
       "초록 = 수평·수직 직선, 빨강 = 기울어진 직선"], "card"),
     (1, 0, "⑥ 걸리면: 보정·재시도", "CPU+GPU", ["2차 보정: 화면 속 직선의 소실점으로", "기울기를 바로잡기 (최대 2회)",
                                               "그래도 걸리면 검출기의 다른 상자로"],
-     [f"이 사진: 1순위 상자 결과가 기울기 {st['fail_first']['tilt']:.1f}°로 실패",
-      f"→ {st['fail_kept_box']}순위 상자로 재시도, 기울기 {st['fail_validation']['tilt_deg']:.1f}° 통과"], "fix"),
+     [f"이 사진: 1순위 상자(카드 리더)가 기울기 {st['fail_first']['tilt']:.1f}°로 실패",
+      f"→ {st['fail_kept_box']}순위 상자(모니터)로 재시도, 기울기 {st['fail_validation']['tilt_deg']:.1f}°"], "fix"),
     (1, 1, "⑦ 정면에서 변 끝 다시 정하기", "CPU", ["8% 여백을 두고 정면으로 편 뒤", "변마다 밝기 단면으로 화면 끝 결정"],
      ["한 번에 안쪽 5% · 바깥 2%까지만 이동",
       "이 사진: 재시도로 고른 결과라 건너뜀 (현재 구현)" if st["fail_validation"]["retried"] else "팝업이 떠도 화면 전체를 유지"], "card"),
@@ -201,6 +201,6 @@ for j, (a, b) in enumerate([("강한 창문 반사 + 팝업", "화면 아래쪽�
     yy = PY + 66 + j * 42
     add(f'<circle cx="{RX + 26}" cy="{yy - 5}" r="3" fill="#6b737e"/><text x="{RX + 36}" y="{yy}" class="b">{a}</text>'
         f'<text x="{RX + 36}" y="{yy + 18}" class="m">{b}</text>')
-add(f'<text x="40" y="{TOT_H - 16}" class="s">예시 사진(Wikimedia Commons, CC0): ①~⑤ 小田急4000系ファン 「Hankyu Mukonoso station Ticket vending machine screen」 · ⑥~⑧ \u2068אייל\u2069 「\u2068חומוס אליהו עמדת הזמנות\u2069」 (식당 주문기) · 2026-11-18 기준</text>')
+add(f'<text x="40" y="{TOT_H - 16}" class="s">예시 사진(Wikimedia Commons): ①~⑤ 小田急4000系ファン 「Hankyu Mukonoso station Ticket vending machine screen」 (CC0) · ⑥~⑧ 42-BRT 「Disused Spirit Airlines check-in counter at DTW Evans Terminal…」 (CC BY-SA 4.0) · 2026-11-18 기준</text>')
 add("</svg>")
 print("\n".join(o))
