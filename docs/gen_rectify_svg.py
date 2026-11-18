@@ -1,6 +1,6 @@
 """Builds docs/rectify_pipeline.svg (the README figure) from the output of docs/fig_stages.py.
 
-  python docs/gen_rectify_svg.py data/real/test_05.jpg <fig_dir> docs/fig_numbers.json > docs/rectify_pipeline.svg
+  python docs/gen_rectify_svg.py data/real/test_05.jpg data/real/test_03.jpg <fig_dir> docs/fig_numbers.json > docs/rectify_pipeline.svg
   fig_dir     : stages.json, flat_check.jpg, frontal.jpg, warped.jpg (from fig_stages.py)
   numbers.json: {"groups": [[label, n, iou, hd95, cut, over]], "cut_over_2": int, "sec": float, "test_n": int}
 PNG: open the SVG in a browser (headless Chrome screenshot at 2x).
@@ -8,7 +8,7 @@ PNG: open the SVG in a browser (headless Chrome screenshot at 2x).
 import base64, json, os, sys
 import cv2
 
-ex_path, fig, num_path = sys.argv[1:4]
+ex_path, fail_path, fig, num_path = sys.argv[1:5]
 st = json.load(open(os.path.join(fig, "stages.json")))
 nums = json.load(open(num_path))
 img = cv2.imread(ex_path)
@@ -77,10 +77,11 @@ cards = [
       "초록 = 수평·수직 직선, 빨강 = 기울어진 직선"], "card"),
     (1, 0, "⑥ 걸리면: 보정·재시도", "CPU+GPU", ["2차 보정: 화면 속 직선의 소실점으로", "기울기를 바로잡기 (최대 2회)",
                                               "그래도 걸리면 검출기의 다른 상자로"],
-     [f"그림: 일부러 비튼 사각형 (직각 오차 {st['skewed_rect_err']:.2f}",
-      f"· 기울기 {st['skewed_tilt']:.1f}°) → 보정 후 {st['fixed_tilt']:.1f}°"], "fix"),
+     [f"이 사진: 1순위 상자 결과가 기울기 {st['fail_first']['tilt']:.1f}°로 실패",
+      f"→ {st['fail_kept_box']}순위 상자로 재시도, 기울기 {st['fail_validation']['tilt_deg']:.1f}° 통과"], "fix"),
     (1, 1, "⑦ 정면에서 변 끝 다시 정하기", "CPU", ["8% 여백을 두고 정면으로 편 뒤", "변마다 밝기 단면으로 화면 끝 결정"],
-     ["한 번에 안쪽 5% · 바깥 2%까지만", "팝업이 떠도 화면 전체를 유지"], "card"),
+     ["한 번에 안쪽 5% · 바깥 2%까지만 이동",
+      "이 사진: 재시도로 고른 결과라 건너뜀 (현재 구현)" if st["fail_validation"]["retried"] else "팝업이 떠도 화면 전체를 유지"], "card"),
     (1, 2, "⑧ 원근 보정", "CPU", ["초점거리 추정 → 실제 가로세로비", "→ 정면 이미지 (긴 변 1600px)"],
      [f"이 사진: {st['aspect']['ratio']:.2f} (보이는 변 {st['aspect']['edge_ratio']:.2f})", "못 구하면 f = 0.75 × 사진 긴 변"], "card"),
 ]
@@ -95,7 +96,7 @@ for row, col, title, chip, lines, notes, style in cards:
     px, py = x + 16, y + 54
     add(f'<rect x="{px - 1}" y="{py - 1}" width="{IW + 2}" height="{IH + 2}" rx="5" fill="#f3f5f8"/>')
     k = (row, col)
-    if k in ((0, 0), (0, 1), (0, 2), (0, 3), (1, 0)):
+    if k in ((0, 0), (0, 1), (0, 2), (0, 3)):
         add(f'<image href="{CROP}" x="{px}" y="{py}" width="{IW}" height="{IH}" preserveAspectRatio="none"/>')
     if k == (0, 0):
         add(f'<polygon points="{to_panel(st["rough"], px, py)}" fill="none" stroke="#f2b01e" stroke-width="3"/>')
@@ -118,14 +119,18 @@ for row, col, title, chip, lines, notes, style in cards:
     elif k == (0, 3):
         add(f'<polygon points="{to_panel(st["consensus"], px, py)}" fill="none" stroke="#d63fd6" stroke-width="1.5" stroke-dasharray="5 4"/>')
         add(f'<polygon points="{to_panel(st["snap"], px, py)}" fill="rgba(226,59,47,0.10)" stroke="#e23b2f" stroke-width="3"/>')
-    elif k == (1, 0):
-        add(f'<polygon points="{to_panel(st["skewed"], px, py)}" fill="none" stroke="#e8590c" stroke-width="2.5" stroke-dasharray="6 4"/>')
-        add(f'<polygon points="{to_panel(st["fixed"], px, py)}" fill="none" stroke="#2f9e44" stroke-width="3"/>')
-        add(f'<rect x="{px + 4}" y="{py + 4}" width="148" height="34" rx="4" fill="rgba(255,255,255,0.88)"/>'
-            f'<text x="{px + 10}" y="{py + 18}" class="lab" fill="#e8590c">-- 일부러 비튼 사각형</text>'
-            f'<text x="{px + 10}" y="{py + 33}" class="lab" fill="#2f9e44">— 2차 보정 결과</text>')
     else:
-        im = cv2.imread(os.path.join(fig, {(0, 4): "flat_check.jpg", (1, 1): "frontal.jpg", (1, 2): "warped.jpg"}[k]))
+        if k == (1, 0):  # failure example: first box's result (orange) and the retried one (green)
+            import numpy as np
+            f = cv2.imread(fail_path)
+            fh, fw = f.shape[:2]
+            th = max(3, fw // 250)
+            for q, colr in ((st["fail_first"]["quad"], (12, 89, 232)), (st["fail_final"], (68, 158, 47))):
+                cv2.polylines(f, [np.int32([[u * fw, v * fh] for u, v in q])], True, colr, th, cv2.LINE_AA)
+            x1, y1, x2, y2 = st["fail_view"]
+            im = f[int(y1 * fh):int(y2 * fh), int(x1 * fw):int(x2 * fw)]
+        else:
+            im = cv2.imread(os.path.join(fig, {(0, 4): "flat_check.jpg", (1, 1): "frontal.jpg", (1, 2): "warped.jpg"}[k]))
         if k == (1, 1):
             import numpy as np
             cv2.polylines(im, [np.int32(st["frontal_before"])], True, (226, 59, 226), 2, cv2.LINE_AA)
@@ -164,7 +169,7 @@ LY = ROW[1] + CH + 30
 lx = 40
 for col, kind, label in [("#f2b01e", "line", "검출기 상자"), ("#1f6fd1", "dot", "안쪽 점 (+)"), ("#1b1d21", "ring", "바깥 점 (−)"),
                          ("#c9ced6", "line", "SAM 후보"), ("#d63fd6", "line", "후보 합의"), ("#e23b2f", "line", "최종 화면 영역"),
-                         ("#e8590c", "dash", "일부러 비튼 사각형"), ("#2f9e44", "line", "2차 보정 결과")]:
+                         ("#e8590c", "line", "1순위 상자 결과 (검사 실패)"), ("#2f9e44", "line", "재시도 결과")]:
     if kind in ("line", "dash"):
         add(f'<line x1="{lx}" y1="{LY - 4}" x2="{lx + 20}" y2="{LY - 4}" stroke="{col}" stroke-width="3"'
             + (' stroke-dasharray="5 3"/>' if kind == "dash" else "/>"))
@@ -196,6 +201,6 @@ for j, (a, b) in enumerate([("강한 창문 반사 + 팝업", "화면 아래쪽�
     yy = PY + 66 + j * 42
     add(f'<circle cx="{RX + 26}" cy="{yy - 5}" r="3" fill="#6b737e"/><text x="{RX + 36}" y="{yy}" class="b">{a}</text>'
         f'<text x="{RX + 36}" y="{yy + 18}" class="m">{b}</text>')
-add(f'<text x="40" y="{TOT_H - 16}" class="s">예시 사진: Wikimedia Commons — 小田急4000系ファン 「Hankyu Mukonoso station Ticket vending machine screen」 (CC0) · 2026-11-18 기준</text>')
+add(f'<text x="40" y="{TOT_H - 16}" class="s">예시 사진(Wikimedia Commons, CC0): ①~⑤ 小田急4000系ファン 「Hankyu Mukonoso station Ticket vending machine screen」 · ⑥~⑧ \u2068אייל\u2069 「\u2068חומוס אליהו עמדת הזמנות\u2069」 (식당 주문기) · 2026-11-18 기준</text>')
 add("</svg>")
 print("\n".join(o))
